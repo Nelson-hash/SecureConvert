@@ -1,16 +1,16 @@
-import { DropZone } from '@components/DropZone';
-import { FileInfo } from '@components/FileInfo';
-import { ConversionOptions } from '@components/ConversionOptions';
-import { ProgressBar } from '@components/ProgressBar';
-import { PrivacyBadge } from '@components/PrivacyBadge';
-import { ErrorMessage } from '@components/ErrorMessage';
-import { ResultDisplay } from '@components/ResultDisplay';
-import { FeatureGrid } from '@components/FeatureGrid';
+import { DropZone } from './components/DropZone.js';
+import { FileInfo } from './components/FileInfo.js';
+import { ConversionOptions } from './components/ConversionOptions.js';
+import { ProgressBar } from './components/ProgressBar.js';
+import { PrivacyBadge } from './components/PrivacyBadge.js';
+import { ErrorMessage } from './components/ErrorMessage.js';
+import { ResultDisplay } from './components/ResultDisplay.js';
+import { FeatureGrid } from './components/FeatureGrid.js';
 
-import { ConverterFactory } from '@converters/index';
-import { downloadFile } from '@utils/downloadUtils';
-import { formatFileSize, validateFile } from '@utils/fileUtils'; // Correction: formatFileSize est dans fileUtils
-import { SUPPORTED_FORMATS } from './config/formats';
+import { ConverterFactory } from './converters/index.js';
+import { downloadFile } from './utils/downloadUtils.js';
+import { formatFileSize, validateFile } from './utils/fileUtils.js';
+import { SUPPORTED_FORMATS } from './config/formats.js';
 
 import './styles/main.css';
 
