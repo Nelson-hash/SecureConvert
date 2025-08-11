@@ -56,6 +56,10 @@ export class App {
   initializeAfterRender() {
     // Initialize components that need DOM elements
     this.dropZone.initialize();
+    this.featureGrid.initialize();
+    
+    // Start privacy badge rotation
+    this.privacyBadge.startRotation(8000);
   }
   
   bindEvents() {
@@ -241,7 +245,19 @@ export class App {
   }
   
   showError(message) {
-    this.errorMessage.show(message);
+    // Determine error type and show appropriate error
+    if (message.includes('library') || message.includes('PDF.js') || message.includes('PDF-lib')) {
+      const missing = [];
+      if (message.includes('PDF.js')) missing.push('PDF.js');
+      if (message.includes('PDF-lib')) missing.push('PDF-lib');
+      this.errorMessage.showLibraryError(missing.length > 0 ? missing : ['Required libraries']);
+    } else if (message.includes('convert') || message.includes('conversion')) {
+      this.errorMessage.showConversionError(message);
+    } else if (message.includes('file') || message.includes('size') || message.includes('format')) {
+      this.errorMessage.showFileError(message);
+    } else {
+      this.errorMessage.show(message);
+    }
   }
   
   hideError() {
