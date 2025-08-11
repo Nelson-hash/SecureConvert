@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureConvert - Privacy-First Document Converter</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Convert documents safely in your browser. PDF, images, and text files - no uploads, no servers, complete privacy.">
+    <meta name="keywords" content="document converter, PDF converter, privacy, client-side, no upload, secure">
+    <meta name="author" content="SecureConvert">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="SecureConvert - Privacy-First Document Converter">
+    <meta property="og:description" content="Convert documents safely in your browser. Files never leave your device.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SecureConvert - Privacy-First Document Converter">
+    <meta name="twitter:description" content="Convert documents safely in your browser. Files never leave your device.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#4c51bf">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" as="script">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: blob:;
+        connect-src 'self';
+        font-src 'self' data:;
+        worker-src 'self' blob: https://cdnjs.cloudflare.com;
+    ">
+    
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SecureConvert",
+        "description": "Privacy-first document converter that processes files entirely in your browser",
+        "url": "https://yourdomain.com",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires modern browser with JavaScript enabled",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "PDF to Image conversion",
+            "Image to PDF conversion", 
+            "PDF text extraction",
+            "Client-side processing",
+            "No file uploads",
+            "Complete privacy"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- No JavaScript fallback -->
+    <noscript>
+        <div style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f7fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            z-index: 9999;
+        ">
+            <h1 style="color: #4c51bf; margin-bottom: 20px;">🔒 SecureConvert</h1>
+            <h2 style="color: #2d3748; margin-bottom: 15px;">JavaScript Required</h2>
+            <p style="color: #4a5568; max-width: 500px; line-height: 1.6;">
+                SecureConvert requires JavaScript to function properly. 
+                Please enable JavaScript in your browser settings and refresh this page.
+            </p>
+            <p style="color: #4a5568; margin-top: 20px; font-size: 14px;">
+                <strong>Why JavaScript?</strong><br>
+                We use JavaScript to process your files entirely in your browser - 
+                no uploads to servers, ensuring complete privacy.
+            </p>
+        </div>
+    </noscript>
+    
+    <!-- Main application container -->
+    <div id="app">
+        <!-- Loading screen -->
+        <div id="loading-screen" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+            z-index: 9998;
+        ">
+            <div style="text-align: center;">
+                <div style="font-size: 3em; margin-bottom: 20px;">🔒</div>
+                <h1 style="margin: 0 0 10px 0; font-size: 2em;">SecureConvert</h1>
+                <p style="margin: 0; opacity: 0.8;">Loading privacy-first document converter...</p>
+                
+                <!-- Loading spinner -->
+                <div style="
+                    margin-top: 30px;
+                    width: 40px;
+                    height: 40px;
+                    border: 4px solid rgba(255,255,255,0.3);
+                    border-top: 4px solid white;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                    margin-left: auto;
+                    margin-right: auto;
+                "></div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+    
+    <!-- External libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    
+    <!-- Main application script (will be injected by webpack) -->
+    
+    <!-- Remove loading screen when app loads -->
+    <script>
+        // Hide loading screen when app is ready
+        function hideLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }
+        }
+        
+        // Hide loading screen after libraries load
+        let libsLoaded = 0;
+        const totalLibs = 2;
+        
+        function checkLibsLoaded() {
+            libsLoaded++;
+            if (libsLoaded >= totalLibs) {
+                setTimeout(hideLoadingScreen, 1000);
+            }
+        }
+        
+        // Check if libraries are loaded
+        window.addEventListener('load', checkLibsLoaded);
+        
+        // Fallback - hide loading screen after 5 seconds
+        setTimeout(hideLoadingScreen, 5000);
+    </script>
+    
+    <!-- Analytics (optional, privacy-focused) -->
+    <!-- Only add if you use privacy-focused analytics like Plausible -->
+    <!--
+    <script defer data-domain="yourdomain.com" src="https://plausible.io/js/plausible.js"></script>
+    -->
+</body>
+</html>
