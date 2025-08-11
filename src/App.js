@@ -9,9 +9,7 @@ import { FeatureGrid } from '@components/FeatureGrid';
 
 import { ConverterFactory } from '@converters/index';
 import { downloadFile } from '@utils/downloadUtils';
-import { formatFileSize } from '@utils/formatUtils';
-import { validateFile } from '@utils/fileUtils';
-
+import { formatFileSize, validateFile } from '@utils/fileUtils'; // Correction: formatFileSize est dans fileUtils
 import { SUPPORTED_FORMATS } from './config/formats';
 
 import './styles/main.css';
@@ -52,23 +50,22 @@ export class App {
     
     // Render components
     this.render();
+    this.initializeAfterRender();
+  }
+  
+  initializeAfterRender() {
+    // Initialize components that need DOM elements
+    this.dropZone.initialize();
   }
   
   bindEvents() {
-    // Bind global events
-    document.getElementById('convertBtn').addEventListener('click', this.handleConvert.bind(this));
-    
-    // Handle file input fallback
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.style.display = 'none';
-    fileInput.addEventListener('change', (e) => {
-      if (e.target.files.length > 0) {
-        this.handleFileSelect(e.target.files[0]);
+    // Bind global events - will be called after render
+    setTimeout(() => {
+      const convertBtn = document.getElementById('convertBtn');
+      if (convertBtn) {
+        convertBtn.addEventListener('click', this.handleConvert.bind(this));
       }
-    });
-    document.body.appendChild(fileInput);
-    this.fileInput = fileInput;
+    }, 100);
   }
   
   render() {
@@ -173,7 +170,10 @@ export class App {
   
   handleFormatSelect(format) {
     this.selectedFormat = format;
-    document.getElementById('convertBtn').style.display = 'block';
+    const convertBtn = document.getElementById('convertBtn');
+    if (convertBtn) {
+      convertBtn.style.display = 'block';
+    }
   }
   
   async handleConvert() {
@@ -259,14 +259,19 @@ export class App {
       this.convertedData = null;
       this.fileInfo.hide();
       this.conversionOptions.hide();
-      document.getElementById('convertBtn').style.display = 'none';
+      const convertBtn = document.getElementById('convertBtn');
+      if (convertBtn) {
+        convertBtn.style.display = 'none';
+      }
     }
   }
   
   setConvertButtonState(disabled) {
     const btn = document.getElementById('convertBtn');
-    btn.disabled = disabled;
-    btn.textContent = disabled ? 'Converting...' : 'Convert File';
+    if (btn) {
+      btn.disabled = disabled;
+      btn.textContent = disabled ? 'Converting...' : 'Convert File';
+    }
   }
   
   getFileExtension(filename) {
@@ -294,8 +299,3 @@ export class App {
     }, 2000);
   }
 }
-
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  new App();
-});
